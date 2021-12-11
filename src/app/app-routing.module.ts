@@ -9,15 +9,15 @@ import { Role } from './_models';
 
 const routes: Routes = [
     {
-        path: '',
+        path: 'home',
         component: HomeComponent,
-        canActivate: [AuthGuard]
+        // canActivate: [AuthGuard]
     },
     {
         path: 'admin',
         component: AdminComponent,
-        canActivate: [AuthGuard],
-        data: { roles: [Role.Admin] }
+        // canActivate: [AuthGuard],
+        // data: { roles: [Role.Admin] }
     },
     {
         path: 'login',

@@ -1,12 +1,12 @@
 ﻿<div class="col-md-6 offset-md-3 mt-5">
-    <div class="alert alert-info" style="background-color: aqua;">
+    <!-- <div class="alert alert-info" style="background-color: aqua;">
         <strong>Customer</strong> - User Name: customer Password: customer<br />
         <strong>Administrator</strong> - User Name: admin Password: admin
-    </div>
+    </div> -->
     <div class="card">
         <h4 class="card-header" style="background-color: aqua;">Role Based Access </h4>
         <div class="card-body">
-            <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+            <!-- <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
                 <div class="form-group">
                     <label for="username">Username</label>
                     <input type="text" formControlName="username" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.username.errors }" />
@@ -26,7 +26,7 @@
                     Login
                 </button>
                 <div *ngIf="error" class="alert alert-danger mt-3 mb-0">{{error}}</div>
-            </form>
+            </form> -->
         </div>
     </div>
 </div>            

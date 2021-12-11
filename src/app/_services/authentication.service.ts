@@ -1,4 +1,5 @@
-﻿import { Injectable } from '@angular/core';
+﻿
+import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
@@ -34,10 +35,38 @@ export class AuthenticationService {
             }));
     }
 
-    logout() {
-        // remove user from local storage to log user out
-        localStorage.removeItem('user');
-        this.userSubject.next(null);
-        this.router.navigate(['/login']);
+    // logout() {
+    //     // remove user from local storage to log user out
+    //     localStorage.removeItem('user');
+    //     this.userSubject.next(null);
+    //     this.router.navigate(['/login']);
+    // }
+
+    addEmployee(formValue:string){
+           return this.http.post<any>(`http://localhost:81/registerEmployee`,{"employeeName":formValue,"role":"emp"});
+    }
+
+    viewAllEmployee(){
+        return this.http.get('http://localhost:81/allEmployee')
+    }
+    
+    removeEmp(id){
+        return this.http.post<any>(`http://localhost:81/removeEmployee`,{"employeeId":id})
+    }
+    
+    updateEmp(id){
+        return this.http.post<any>(`http://localhost:81/updateEmployee`,{"employeeId":id,"active":false})
+    } 
+
+    addTask(taskDesc){
+        return this.http.post<any>(`http://localhost:82/createTask`,{"taskDesc":taskDesc})
+    }
+
+    viewAllTask(){
+        return this.http.get(`http://localhost:82/viewAllTasks`)
+    }
+
+    assignTask(taskId,empId){
+        return this.http.post(`http://localhost:82/assignTask`,{"taskId":taskId,"employeeId":empId})
     }
 }
