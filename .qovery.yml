@@ -1,0 +1,11 @@
+---
+application:
+  name: "angular-role-base-auth-login"
+  project: "Angular role base login"
+  organization: "QoveryCommunity"
+routers:
+- name: "main-angular-role-base-auth-login"
+  routes:
+  - application_name: "angular-role-base-auth-login"
+    paths:
+    - "/*"
