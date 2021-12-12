@@ -2,24 +2,67 @@
     <h4 class="card-header"  style="background-color: aqua;" >Admin Panel</h4>
     <div class="card-body">
         <p>Manager can only access this module.</p>
-        <p class="mb-1"></p>
-        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-            <div class="form-group">
-                <label for="username">Username</label>
-                <input type="text" formControlName="username" class="form-control"/>
-                <!-- <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
-                    <div *ngIf="f.username.errors.required">Username is required</div>
-                </div> -->
-            </div>
-            <!-- <button [disabled]="loading || loginForm.invalid" class="btn btn-primary">
-                <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
-                Login
-            </button> -->
-            <button>
-                Add
-            </button>
+
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()"> 
+        <table class="example-full-width" cellspacing="0"><tr>
+           
+            <td><mat-form-field class="example-full-width" appearance="fill">
+              <mat-label>Add Employee</mat-label>
+              <input formControlName="username" matInput>
+            </mat-form-field></td>
+            <td style="padding-left: 25%;
+            padding-bottom: 20px;">
+           <button mat-raised-button color="primary" type="submit" >Add</button>
+            </td>
+        
+          </tr></table>
         </form>
-        <ul *ngIf="employeeData">
+        
+
+        
+        <mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+            <!-- Position Column -->
+            <ng-container matColumnDef="employeeId">
+              <mat-header-cell *matHeaderCellDef> No. </mat-header-cell>
+              <mat-cell *matCellDef="let element"> {{element.employeeId}} </mat-cell>
+            </ng-container>
+          
+            <!-- Name Column -->
+            <ng-container matColumnDef="employeename">
+              <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
+              <mat-cell *matCellDef="let element"> {{element.employeeName}} </mat-cell>
+            </ng-container>
+          
+            <!-- Weight Column -->
+            <ng-container matColumnDef="b1">
+              <mat-header-cell *matHeaderCellDef> Change Status </mat-header-cell>
+              <mat-cell *matCellDef="let element"> 
+                <button mat-raised-button  color="accent" (click)="updateUser(element)">
+                &nbsp; Inactive&nbsp;
+            </button> </mat-cell>
+            </ng-container>
+          
+            <!-- Symbol Column -->
+            <ng-container matColumnDef="b2">
+              <mat-header-cell *matHeaderCellDef> Delete </mat-header-cell>
+              <mat-cell *matCellDef="let element"> <button mat-raised-button  color="warn" (click)="removeUser(element)">
+                &nbsp; Remove&nbsp;
+            </button></mat-cell>
+            </ng-container>
+          
+            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+            <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+          </mat-table>
+
+
+
+
+
+
+
+
+
+        <!-- <ul *ngIf="employeeData">
             <li *ngFor="let user of employeeData">{{user.employeeId}} {{user.employeeName}}
                 <button (click)="removeUser(user)">
                     &nbsp; Remove&nbsp;
@@ -29,7 +72,7 @@
                 </button>
             </li>
             
-        </ul> 
+        </ul>  -->
         <!-- <div *ngIf="loading" class="spinner-border spinner-border-sm"></div>
         <ul *ngIf="users">
             <li *ngFor="let user of users">{{user.firstName}} {{user.lastName}}</li>
@@ -68,4 +111,6 @@
             
         </ul>
     </div>
+
+    <app-tasks></app-tasks>
 </div>

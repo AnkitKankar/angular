@@ -12,8 +12,15 @@ import { AppRoutingModule } from './app-routing.module';
 import { JwtInterceptor, ErrorInterceptor } from './_helpers';
 import { HomeComponent } from './home';
 import { AdminComponent } from './admin';
-import { LoginComponent } from './login';;
+import { LoginComponent } from './login';
 import { CreateUserComponent } from './create-user/create-user.component'
+;
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button'
+import {MatTableModule} from '@angular/material/table';;
+import { TasksComponent } from './admin/tasks/tasks.component'
 
 @NgModule({
     imports: [
@@ -21,8 +28,12 @@ import { CreateUserComponent } from './create-user/create-user.component'
         ReactiveFormsModule,
         HttpClientModule,
         AppRoutingModule,
-        FormsModule
-    ],
+        FormsModule,
+        MatFormFieldModule,
+        MatInputModule,
+        MatButtonModule,
+        MatTableModule,
+        BrowserAnimationsModule    ],
     declarations: [
         AppComponent,
         HomeComponent,
@@ -30,7 +41,8 @@ import { CreateUserComponent } from './create-user/create-user.component'
         LoginComponent
 ,
         CreateUserComponent
-    ],
+,
+        TasksComponent    ],
     providers: [
         { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
         { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },

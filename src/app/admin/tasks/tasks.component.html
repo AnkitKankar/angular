@@ -1,0 +1,56 @@
+<p>Manager can only access this module.</p>
+
+        <form [formGroup]="taskForm" (ngSubmit)="taskSubmit()"> 
+        <table class="example-full-width" cellspacing="0"><tr>
+           
+            <td><mat-form-field class="example-full-width" appearance="fill">
+              <mat-label>Add Task</mat-label>
+              <input formControlName="taskname" matInput>
+            </mat-form-field></td>
+            <td style="padding-left: 25%;
+            padding-bottom: 20px;">
+           <button mat-raised-button color="primary" type="submit" >Add</button>
+            </td>
+        
+          </tr></table>
+        </form>
+        
+
+        
+        <mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+            <!-- Position Column -->
+            <ng-container matColumnDef="taskId">
+              <mat-header-cell *matHeaderCellDef> No. </mat-header-cell>
+              <mat-cell *matCellDef="let element"> {{element.taskId}} </mat-cell>
+            </ng-container>
+          
+            <!-- Name Column -->
+            <ng-container matColumnDef="taskdescription">
+              <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
+              <mat-cell *matCellDef="let element"> {{element.taskDesc}} </mat-cell>
+            </ng-container>
+          
+            <!-- Weight Column -->
+            <ng-container matColumnDef="assign">
+              <mat-header-cell *matHeaderCellDef> Change Status </mat-header-cell>
+              <mat-cell *matCellDef="let element"> 
+                <label for="status">&nbsp;Employee Id &nbsp;</label>
+                        <select [(ngModel)]="selectedEmployeeId">
+                            <option *ngFor="let x of employeeData" [ngValue]="x" >{{x.employeeId}}</option>
+                        </select> 
+                    </mat-cell>
+            </ng-container>
+          
+            <!-- Symbol Column -->
+            <ng-container matColumnDef="b1">
+              <mat-header-cell *matHeaderCellDef> Delete </mat-header-cell>
+              <mat-cell *matCellDef="let element"> 
+            <button mat-raised-button color="accent" (click)="assignTask(element)">
+                &nbsp;Assign Task&nbsp;
+            </button>
+        </mat-cell>
+            </ng-container>
+          
+            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+            <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+          </mat-table>

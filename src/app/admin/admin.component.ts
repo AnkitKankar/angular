@@ -14,6 +14,8 @@ export class AdminComponent implements OnInit {
     taskForm : FormGroup;
     taskData: any[]=[];
     selectedEmployeeId:"";
+    displayedColumns: string[] = ['employeeId', 'employeename', 'b1', 'b2'];
+    dataSource:[];
     constructor(private userService: UserService,private formBuilder:FormBuilder,
         private authenticationService: AuthenticationService ) { }
 
@@ -33,11 +35,10 @@ export class AdminComponent implements OnInit {
        this.authenticationService.viewAllEmployee().subscribe(
          res=>{
           console.log("employee data",res["data"])
-          this.employeeData = res["data"]
+          this.employeeData = res["data"];
+          this.dataSource = res["data"];
          }
        )
-
-       
 
        this.authenticationService.viewAllTask().subscribe(
         res=>{
