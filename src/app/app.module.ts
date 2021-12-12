@@ -21,6 +21,8 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button'
 import {MatTableModule} from '@angular/material/table';;
 import { TasksComponent } from './admin/tasks/tasks.component'
+import {MatSelectModule} from '@angular/material/select';
+import {MatDialogModule} from '@angular/material/dialog';
 
 @NgModule({
     imports: [
@@ -33,6 +35,8 @@ import { TasksComponent } from './admin/tasks/tasks.component'
         MatInputModule,
         MatButtonModule,
         MatTableModule,
+        MatDialogModule,
+        MatSelectModule,
         BrowserAnimationsModule    ],
     declarations: [
         AppComponent,

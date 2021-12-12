@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthenticationService } from '@app/_services/authentication.service';
+import { MatTableDataSource } from '@angular/material/table';
 
 @Component({
   selector: 'app-tasks',
@@ -13,7 +14,7 @@ export class TasksComponent implements OnInit {
   taskData: any[]=[];
   selectedEmployeeId:"";
   displayedColumns: string[] = ['taskId', 'taskdescription', 'assign', 'b1'];
-    dataSource:[];
+    dataSource= new MatTableDataSource<any>();
   constructor(private formBuilder:FormBuilder,
     private authenticationService: AuthenticationService) { }
 
@@ -43,6 +44,7 @@ export class TasksComponent implements OnInit {
     this.authenticationService.addTask(this.taskForm.value['taskname'])
 .subscribe( data => {
     console.log(data)
+    this.ngOnInit();
     // this.router.navigate([this.returnUrl]);
     })
     // error => {
@@ -52,10 +54,10 @@ export class TasksComponent implements OnInit {
 } 
 assignTask(tsk){
 console.log(tsk)
-console.log(this.selectedEmployeeId)
 
-this.authenticationService.assignTask(tsk['taskId'],this.selectedEmployeeId['employeeId']).subscribe(res=>{
-    console.log("task assigned",res)
+this.authenticationService.assignTask(tsk['taskId'],tsk['status']['employeeId']).subscribe(res=>{
+    console.log("task assigned",res);
+    this.ngOnInit();
 })
 }  
 }

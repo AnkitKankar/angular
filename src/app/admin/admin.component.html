@@ -1,7 +1,10 @@
 ﻿<div class="card mt-4">
-    <h4 class="card-header"  style="background-color: aqua;" >Admin Panel</h4>
+    <h4 class="card-header"  style="background-color: aqua;" >Admin Panel <button style="float: right;" mat-raised-button color= "primary" (click)="openDialog()">Tasks</button></h4>
+    
     <div class="card-body">
-        <p>Manager can only access this module.</p>
+        <div style="margin: auto;width: 50%;">
+        <h1 style="border: 5px solid rgb(132, 0, 255); text-align: center; background-color: rgb(235, 229, 229);">Only Managers Can Access This Module.</h1>
+        </div>
 
         <form [formGroup]="loginForm" (ngSubmit)="onSubmit()"> 
         <table class="example-full-width" cellspacing="0"><tr>
@@ -54,63 +57,6 @@
             <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
           </mat-table>
 
-
-
-
-
-
-
-
-
-        <!-- <ul *ngIf="employeeData">
-            <li *ngFor="let user of employeeData">{{user.employeeId}} {{user.employeeName}}
-                <button (click)="removeUser(user)">
-                    &nbsp; Remove&nbsp;
-                </button>
-                <button (click)="updateUser(user)">
-                    &nbsp; Inactive&nbsp;
-                </button>
-            </li>
-            
-        </ul>  -->
-        <!-- <div *ngIf="loading" class="spinner-border spinner-border-sm"></div>
-        <ul *ngIf="users">
-            <li *ngFor="let user of users">{{user.firstName}} {{user.lastName}}</li>
-        </ul> -->
-
-        <form [formGroup]="taskForm" (ngSubmit)="taskSubmit()">
-            <div class="form-group">
-                <label for="taskname">Add Task</label>
-                <input type="text" formControlName="taskname" class="form-control"/>
-                <!-- <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
-                    <div *ngIf="f.username.errors.required">Username is required</div>
-                </div> -->
-            </div>
-            <!-- <button [disabled]="loading || loginForm.invalid" class="btn btn-primary">
-                <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
-                Login
-            </button> -->
-            <button  (click)="taskSubmit()">
-                Add Task
-            </button>
-
-           
-        </form>
-        <ul *ngIf="taskData">
-            <li *ngFor="let user of taskData">{{user.taskId}} {{user.taskDesc}}
-                   
-                    <label for="status">&nbsp;Employee Id &nbsp;</label>
-                        <select [(ngModel)]="selectedEmployeeId">
-                            <option *ngFor="let x of employeeData" [ngValue]="x" >{{x.employeeId}}</option>
-                        </select>
-                
-                <button (click)="assignTask(user)">
-                    &nbsp;Assign Task&nbsp;
-                </button>
-            </li>
-            
-        </ul>
     </div>
-
-    <app-tasks></app-tasks>
 </div>
+

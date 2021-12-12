@@ -1,3 +1,4 @@
+<mat-dialog-content>
 <p>Manager can only access this module.</p>
 
         <form [formGroup]="taskForm" (ngSubmit)="taskSubmit()"> 
@@ -26,24 +27,38 @@
           
             <!-- Name Column -->
             <ng-container matColumnDef="taskdescription">
-              <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
+              <mat-header-cell *matHeaderCellDef> Description </mat-header-cell>
               <mat-cell *matCellDef="let element"> {{element.taskDesc}} </mat-cell>
             </ng-container>
           
             <!-- Weight Column -->
             <ng-container matColumnDef="assign">
-              <mat-header-cell *matHeaderCellDef> Change Status </mat-header-cell>
+              <mat-header-cell *matHeaderCellDef> Assign Employee </mat-header-cell>
               <mat-cell *matCellDef="let element"> 
-                <label for="status">&nbsp;Employee Id &nbsp;</label>
-                        <select [(ngModel)]="selectedEmployeeId">
+                <mat-form-field appearance="fill">
+                  <mat-label>EmployeeName</mat-label>
+                  <mat-select [(ngModel)]="element.status" name="food">
+                    <mat-option *ngFor="let x of employeeData" [value]="x">
+                      {{x.employeeName}}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+                <!-- <mat-form-field appearance="fill">
+                  <mat-label>EmployeeId</mat-label>
+                        <select matNativeControl [(ngModel)]="selectedEmployeeId">
                             <option *ngFor="let x of employeeData" [ngValue]="x" >{{x.employeeId}}</option>
+                            <option value="" selected></option>
+                            <option *ngFor="let x of employeeData" [value]="x">
+                              {{x.employeeId}}
+                            </option>
                         </select> 
+                </mat-form-field> -->
                     </mat-cell>
             </ng-container>
           
             <!-- Symbol Column -->
             <ng-container matColumnDef="b1">
-              <mat-header-cell *matHeaderCellDef> Delete </mat-header-cell>
+              <mat-header-cell *matHeaderCellDef> Assign </mat-header-cell>
               <mat-cell *matCellDef="let element"> 
             <button mat-raised-button color="accent" (click)="assignTask(element)">
                 &nbsp;Assign Task&nbsp;
@@ -54,3 +69,4 @@
             <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
             <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
           </mat-table>
+        </mat-dialog-content>
